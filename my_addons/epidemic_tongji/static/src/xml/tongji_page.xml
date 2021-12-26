@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template>
+    <t t-name="EpidemicTongjiPage">
+        <div class="container" style="padding: 20px; background-color: #FFF">
+            <t t-call="Graphmap"/>
+            <t t-call="Graphline"/>
+        </div>
+    </t>
+
+    <t t-name="Graphmap">
+        <div class="row">
+            <div class="col-md-5" id="newsdata" style="height: 400px; width: 100%"/>
+            <div class="col-md-7" id="graphmap" style="height: 400px; width: 100%"/>
+        </div>
+    </t>
+
+    <t t-name="Graphline">
+        <hr/>
+        <button class="confirm">新增确诊人数</button>
+        <button class="suspect">新增疑似人数</button>
+        <button class="heal">新增治愈人数</button>
+        <button class="dead">新增死亡人数</button>
+        <button class="severe">新增重症人数</button>
+        <button class="input">新增境外输入人数</button>
+        <div class="row">
+            <div id="graphline" style="height: 300px; width: 100%"></div>
+        </div>
+    </t>
+</template>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="history_data_days_form_view" model="ir.ui.view">
+        <field name="name">中国历史时点数据</field>
+        <field name="model">history.data.days</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="confirm"/>
+                            <field name="suspect"/>
+                            <field name="heal"/>
+
+                        </group>
+                        <group>
+                            <field name="dead"/>
+                            <field name="severe"/>
+                            <field name="import_abroad"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="history_data_days_tree_view" model="ir.ui.view">
+        <field name="name">中国历史时点数据</field>
+        <field name="model">history.data.days</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="confirm"/>
+                <field name="suspect"/>
+                <field name="heal"/>
+                <field name="dead"/>
+                <field name="severe"/>
+                <field name="import_abroad"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="history_data_days_act_window" model="ir.actions.act_window">
+        <field name="name">中国历史时点数据</field>
+        <field name="res_model">history.data.days</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

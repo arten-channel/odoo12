@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="epidemic_record.module_category" model="ir.module.category">
+            <field name="name">疫情记录</field>
+            <field name="description">疫情记录</field>
+        </record>
+
+        <!--      表级别权限：  疫情记录初级权限 增、查、改-->
+        <record id="epidemic_record.group_base" model="res.groups">
+            <field name="category_id" ref="epidemic_record.module_category"/>
+            <field name="name">疫情记录初级权限</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">疫情记录初级权限可以查看辅助填报人或者填报人包含当前登录账户的记录</field>
+            <!--            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>-->
+        </record>
+
+        <!--       表级别权限： 管理员 增、删、改、查-->
+        <record id="epidemic_record.group_manager" model="res.groups">
+            <field name="category_id" ref="epidemic_record.module_category"/>
+            <field name="name">管理员</field>
+            <field name="implied_ids" eval="[(4, ref('epidemic_record.group_base'))]"/>
+            <field name="comment">管理员可以查看所有的记录</field>
+            <!--            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>-->
+        </record>
+
+    </data>
+
+    <data>
+        <record id="epidemic_record.group_base_rule" model="ir.rule">
+            <field name="name">疫情记录初级权限</field>
+            <field name="model_id" ref="model_epidemic_record"/>
+            <field name="domain_force">['|',('fuzhu_create_user_ids', 'child_of', [user.id]), ('create_user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('epidemic_record.group_base'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="epidemic_record.group_manager_rule" model="ir.rule">
+            <field name="name">疫情记录全局查看</field>
+            <field name="model_id" ref="model_epidemic_record"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('epidemic_record.group_manager'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

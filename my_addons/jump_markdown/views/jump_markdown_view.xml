@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="act_jump_markdown_act_url" model="ir.actions.act_url">
+        <field name="name">跳转markdown文档</field>
+        <field name="target">new</field>
+        <field name="url">http://www.odoodev.cn</field>
+    </record>
+
+    <!--    跳转到markdown-->
+    <menuitem name="文档"
+              id="jump_markdown_menu_root"
+              action="act_jump_markdown_act_url"
+              groups="base.group_user"
+              sequence="15"/>
+
+</odoo>

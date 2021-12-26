@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="test_department_form_view" model="ir.ui.view">
+        <field name="name">test.department</field>
+        <field name="model">test.department</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+
+                    </group>
+                    <notebook>
+                        <page>
+                            <field name="employee_ids" mode="kanban">
+                                <kanban>
+                                    <field name="id"/>
+                                    <field name="name"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div>
+                                                <field name="name"/>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <form>
+                                    <sheet>
+                                        <field name="name" invisible="0"/>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="test_department_tree_view" model="ir.ui.view">
+        <field name="name">test.department</field>
+        <field name="model">test.department</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="employee_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="test_department_act_window" model="ir.actions.act_window">
+        <field name="name">test.department</field>
+        <field name="res_model">test.department</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

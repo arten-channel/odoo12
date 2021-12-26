@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem name="疫情数据统计"
+              id="epidemic_tongji_menu_root"
+              sequence="11"/>
+
+    <menuitem name="中国历史时点数据"
+              id="sec_history_data_days_menu"
+              parent="epidemic_tongji_menu_root"
+              action="history_data_days_act_window"
+              sequence="20"/>
+
+    <menuitem name="中国疫情分省统计详情"
+              id="sec_tongji_to_province_menu"
+              parent="epidemic_tongji_menu_root"
+              action="tongji_to_province_act_window"
+              sequence="22"/>
+
+    <menuitem name="统计页面"
+              id="sec_epidemic_tongji_page_menu"
+              parent="epidemic_tongji_menu_root"
+              action="epidemic_tongji_page_action"
+              sequence="100"/>
+
+    <menuitem name="设置"
+              id="sec_epidemic_tongji_setting_menu"
+              parent="epidemic_tongji_menu_root"
+              sequence="100"/>
+
+    <menuitem name="城市"
+              id="third_res_city_menu"
+              parent="sec_epidemic_tongji_setting_menu"
+              action="china_city.res_city_act_window"/>
+
+</odoo>

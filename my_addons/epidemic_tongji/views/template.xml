@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="epidemic_tongji.assets_backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/epidemic_tongji/static/src/js/epidemic_tongji_page.js"/>
+            <script type="text/javascript" src="/epidemic_tongji/static/src/js/echarts/echarts.min.js"/>
+            <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&amp;ak=oiSNGnW4TatjQPhS8jPaLb55BqcDsUKA"/>
+            <script type="text/javascript" src="/epidemic_tongji/static/src/js/echarts/bmap.min.js"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    tree视图-->
+    <record id="epidemic_record_tree_view" model="ir.ui.view">
+        <field name='name'>疫情记录</field>
+        <field name="model">epidemic.record</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="state"/>
+                <field name="city"/>
+                <field name="county"/>
+                <field name="street"/>
+                <field name="ill_type"/>
+                <field name="within_or_abroad"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--    form视图-->
+    <record id="epidemic_record_form_view" model="ir.ui.view">
+        <field name="name">疫情记录</field>
+        <field name="model">epidemic.record</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="测试按钮1" type="object" class="oe_highlight" name="myunlink"/>
+                    <button string="搜搜按钮" type="object" class="oe_highlight" name="mysearch"/>
+                    <button string="创建或修改" type="object" class="oe_highlight" name="create_or_write"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="姓名" required="1"/>
+                            <field name="is_ill" string="是否确诊"/>
+                            <field name="within_or_abroad" string="境内/境外" required="1"/>
+                            <field name="begin_lsolation_date" string="起始隔离日期"
+                                   attrs="{'required': [('is_ill', '=', False)], 'invisible': [('is_ill', '=', True)]}"/>
+                            <field name="lsolation_mode" string="隔离方式"
+                                   attrs="{'required': [('is_ill', '=', False)], 'invisible': [('is_ill', '=', True)]}"/>
+                            <field name="ill_type" string="感染方式"
+                                   attrs="{'required': [('is_ill', '=', True)], 'invisible': [('is_ill', '=', False)]}"/>
+                            <field name="date" string="确诊日期"
+                                   attrs="{'required': [('is_ill', '=', True)],  'invisible': [('is_ill', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <field name="state" string="省" required="1"/>
+                            <field name="city" string="市" required="1"/>
+                            <field name="county" string="区/县"/>
+                            <field name="street" string="具体地址" required="1"/>
+                            <field name="create_user_id" string="填报人" readonly="1"/>
+                            <field name="fuzhu_create_user_ids" string="辅助填报人" widget="many2many_tags" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="test_float"/>
+                            <field name="test_int"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="说明">
+                            <field name="note" groups="epidemic_record.group_manager" placeholder="其他信息"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    搜索视图-->
+    <record id="epidemic_record_search_view" model="ir.ui.view">
+        <field name='name'>疫情记录</field>
+        <field name="model">epidemic.record</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="state"/>
+
+                <filter string="已确诊" name="is_ill" domain="[('is_ill', '=', True)]"/>
+                <filter string="未确诊" name="is_ill" domain="[('is_ill', '=', False)]"/>
+                <!--                <filter string="Confirmed Orders" name="confirmed" domain="[('state', 'in', ['sale', 'done'])]"/>-->
+                <group expand="1">
+                    <filter string="是否确诊" name="is_ill" context="{'group_by': 'is_ill'}"/>
+                    <filter string="填报人" name="create_user_id" context="{'group_by': 'create_user_id'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <!--    透视表-->
+    <record id="epidemic_record_pivot_view" model="ir.ui.view">
+        <field name="name">疫情记录透视表</field>
+        <field name="model">epidemic.record</field>
+        <field name="arch" type="xml">
+            <pivot disable_linking="True" default_order="test_int desc">
+                <field name="is_ill" type="row"/>
+                <field name="begin_lsolation_date" type="row" interval="day"/>
+                <field name="test_float" type="measure"/>
+                <field name="test_int" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!--    graph图表-->
+    <record id="epidemic_record_graph_view" model="ir.ui.view">
+        <field name="name">疫情记录图表</field>
+        <field name="model">epidemic.record</field>
+        <field name="arch" type="xml">
+            <graph type="pie">
+                <field name="state" type="row"/>
+                <field name="test_int" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="epidemic_record_act_window" model="ir.actions.act_window">
+        <field name="name">疫情记录</field>
+        <field name="res_model">epidemic.record</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+    </record>
+
+    <menuitem name="疫情记录"
+              id="epidemic_record_menu_root"
+              groups="epidemic_record.group_base,epidemic_record.group_manager"
+              sequence="10"/>
+
+    <menuitem name="疫情记录"
+              id="sec_epidemic_record_menu"
+              parent="epidemic_record_menu_root"
+              action="epidemic_record_act_window"
+              sequence="10"/>
+
+</odoo>

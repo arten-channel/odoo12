@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_history_data_days_group_base,history.data.days,model_history_data_days,base.group_user,1,1,1,1
+access_tongji_to_province_group_base,tongji_to_province,model_tongji_to_province,base.group_user,1,1,1,1

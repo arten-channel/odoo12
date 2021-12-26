@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="test_department_wizard_view" model="ir.ui.view">
+            <field name="name">更新部门员工</field>
+            <field name="model">test.department.wizard</field>
+            <field name="arch" type="xml">
+                <form string="更新部门员">
+                    <group>
+                        <notebook>
+                            <page>
+                                <field name="line_ids">
+                                    <tree editable="top">
+                                        <field name="department_id" readonly="1"/>
+                                        <field name="employee_ids" widget="many2many_tags"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                    <footer>
+                        <button string="确认" name="update_department" type="object" class="btn-primary"/>
+                        <button string="关闭" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window
+                id="est_department_wizard"
+                res_model="test.department.wizard"
+                src_model="test.department"
+                target="new"
+                context="{'department_ids': active_ids}"
+                view_type="form"
+                view_mode="form"
+                key2="client_action_multi"
+                name="更新部门员工"
+                groups="base.group_user"
+        />
+    </data>
+</odoo>

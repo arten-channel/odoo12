@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="test_employee_form_view" model="ir.ui.view">
+        <field name="name">test.employee</field>
+        <field name="model">test.employee</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="name"/>
+                    <field name="department_id"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="test_employee_tree_view" model="ir.ui.view">
+        <field name="name">test.employee</field>
+        <field name="model">test.employee</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="department_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="test_employee_act_window" model="ir.actions.act_window">
+        <field name="name">test.employee</field>
+        <field name="res_model">test.employee</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

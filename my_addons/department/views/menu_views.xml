@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem name="部门"
+              id="test_department_menu_root"
+              groups="base.group_user"
+              sequence="10"/>
+
+    <menuitem name="部门"
+              id="test_department_menu"
+              groups="base.group_user"
+              parent="test_department_menu_root"
+              action="department.test_department_act_window"
+              sequence="10"/>
+
+    <menuitem name="员工"
+              id="test_employee_menu"
+              groups="base.group_user"
+              parent="test_department_menu_root"
+              action="department.test_employee_act_window"
+              sequence="22"/>
+
+
+</odoo>

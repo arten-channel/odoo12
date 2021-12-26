@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem name="城市信息维护"
+              id="res_city_menu_root"
+              sequence="13"
+    />
+    <menuitem name="城市"
+              id="sec_res_city_menu"
+              parent="res_city_menu_root"
+              action="china_city.res_city_act_window"
+    />
+</odoo>
